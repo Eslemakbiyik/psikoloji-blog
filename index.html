@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zihin Atlası — Psikoloji üzerine güvenilir, anlaşılır içerikler. / Mind Atlas — Reliable, accessible content on psychology.">
+  <title>Zihin Atlası | Psikoloji Blogu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #6a94b8;
+      --sage-dark: #4a7396;
+      --sage-light: #e3edf5;
+      --cream: #f5f9fc;
+      --beige: #e2ebf2;
+      --ink: #333a40;
+      --ink-soft: #64707a;
+      --white: #ffffff;
+      --radius: 14px;
+      --shadow: 0 4px 20px rgba(50, 70, 90, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 { font-family: 'Lora', serif; font-weight: 600; line-height: 1.3; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px; max-width: 1080px; margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 600;
+      color: var(--sage-dark); display: flex; align-items: center; gap: 10px;
+    }
+
+    .logo svg { width: 28px; height: 28px; }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+
+    .nav-links a {
+      font-size: 0.95rem; font-weight: 600; color: var(--ink-soft);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--sage-dark); }
+
+    .lang-toggle {
+      display: flex; border: 1.5px solid var(--sage); border-radius: 999px;
+      overflow: hidden; font-size: 0.85rem; font-weight: 700;
+    }
+
+    .lang-toggle button {
+      border: none; background: transparent; color: var(--sage-dark);
+      padding: 5px 14px; cursor: pointer; font-family: inherit; font-weight: 700;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-toggle button.active { background: var(--sage); color: var(--white); }
+
+    .menu-btn { display: none; background: none; border: none; font-size: 1.6rem; color: var(--sage-dark); cursor: pointer; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      background: linear-gradient(160deg, var(--sage-light) 0%, var(--cream) 70%);
+      padding: 90px 0 70px;
+    }
+
+    .hero-inner { max-width: 720px; }
+
+    .hero .eyebrow {
+      display: inline-block; background: var(--sage); color: var(--white);
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 6px 16px; border-radius: 999px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 18px; }
+
+    .hero p { font-size: 1.12rem; color: var(--ink-soft); margin-bottom: 32px; max-width: 580px; }
+
+    .btn {
+      display: inline-block; background: var(--sage-dark); color: var(--white);
+      font-weight: 700; padding: 13px 30px; border-radius: 999px;
+      transition: background 0.2s, transform 0.2s; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem;
+    }
+
+    .btn:hover { background: var(--sage); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent; color: var(--sage-dark);
+      border: 1.5px solid var(--sage-dark); margin-left: 12px;
+    }
+
+    .btn-outline:hover { background: var(--sage-light); }
+
+    /* ---------- Sections ---------- */
+    section { padding: 70px 0; }
+
+    .section-head { text-align: center; max-width: 560px; margin: 0 auto 48px; }
+
+    .section-head h2 { font-size: 2rem; margin-bottom: 12px; }
+
+    .section-head p { color: var(--ink-soft); }
+
+    /* ---------- Article cards ---------- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 28px; }
+
+    .card {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(50, 70, 90, 0.13); }
+
+    .card-banner {
+      height: 130px; display: flex; align-items: center; justify-content: center;
+      font-size: 2.6rem;
+    }
+
+    .banner-1 { background: linear-gradient(135deg, #d6e4f0, #a9c6de); }
+    .banner-2 { background: linear-gradient(135deg, #dce9f2, #b3d2e6); }
+    .banner-3 { background: linear-gradient(135deg, #d8e4e8, #b4cbd4); }
+    .banner-4 { background: linear-gradient(135deg, #dfe0f0, #bcbfe0); }
+    .banner-5 { background: linear-gradient(135deg, #d8ecec, #aed4d6); }
+    .banner-6 { background: linear-gradient(135deg, #e2e0f0, #c3bede); }
+
+    .card-body { padding: 24px 24px 28px; display: flex; flex-direction: column; flex: 1; }
+
+    .tag {
+      align-self: flex-start; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      background: var(--sage-light); color: var(--sage-dark);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
+    }
+
+    .card h3 { font-size: 1.18rem; margin-bottom: 10px; }
+
+    .card p { font-size: 0.95rem; color: var(--ink-soft); flex: 1; }
+
+    .card .meta { margin-top: 18px; font-size: 0.82rem; color: var(--ink-soft); display: flex; justify-content: space-between; }
+
+    .card .read-more { color: var(--sage-dark); font-weight: 700; }
+
+    /* ---------- Topics ---------- */
+    .topics { background: var(--beige); }
+
+    .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+
+    .topic {
+      background: var(--white); border-radius: var(--radius); padding: 26px 20px;
+      text-align: center; box-shadow: var(--shadow); transition: transform 0.2s;
+    }
+
+    .topic:hover { transform: translateY(-4px); }
+
+    .topic .icon { font-size: 2rem; margin-bottom: 10px; }
+
+    .topic h3 { font-size: 1.02rem; margin-bottom: 6px; }
+
+    .topic p { font-size: 0.85rem; color: var(--ink-soft); }
+
+    /* ---------- About ---------- */
+    .about-box {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center;
+    }
+
+    .about-visual {
+      background: linear-gradient(150deg, var(--sage-light), var(--sage));
+      border-radius: var(--radius); min-height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; box-shadow: var(--shadow);
+    }
+
+    .about-text h2 { font-size: 1.9rem; margin-bottom: 16px; }
+
+    .about-text p { color: var(--ink-soft); margin-bottom: 14px; }
+
+    /* ---------- Newsletter ---------- */
+    .newsletter { background: var(--sage-dark); color: var(--white); text-align: center; }
+
+    .newsletter h2 { font-size: 1.9rem; margin-bottom: 12px; }
+
+    .newsletter p { opacity: 0.85; max-width: 480px; margin: 0 auto 28px; }
+
+    .newsletter form {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      max-width: 480px; margin: 0 auto;
+    }
+
+    .newsletter input {
+      flex: 1; min-width: 220px; padding: 13px 20px; border-radius: 999px;
+      border: none; font-family: inherit; font-size: 0.95rem; outline: none;
+    }
+
+    .newsletter .btn { background: var(--ink); }
+    .newsletter .btn:hover { background: #2b2f2b; }
+
+    .form-note { font-size: 0.85rem; margin-top: 14px; opacity: 0.75; }
+
+    /* ---------- Footer ---------- */
+    footer { background: var(--ink); color: #c9cdc9; padding: 48px 0 28px; }
+
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px;
+    }
+
+    .footer-grid h3 { color: var(--white); font-size: 1.05rem; margin-bottom: 14px; }
+
+    .footer-grid p, .footer-grid a { font-size: 0.9rem; }
+
+    .footer-grid ul { list-style: none; }
+
+    .footer-grid li { margin-bottom: 8px; }
+
+    .footer-grid a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid #4a4f4a; padding-top: 20px;
+      font-size: 0.82rem; text-align: center; opacity: 0.7;
+    }
+
+    .disclaimer {
+      background: var(--sage-light); border-left: 4px solid var(--sage);
+      border-radius: 8px; padding: 16px 20px; font-size: 0.88rem;
+      color: var(--ink-soft); margin-top: 40px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--cream); flex-direction: column; padding: 20px;
+        border-bottom: 1px solid var(--beige); gap: 16px;
+      }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: block; }
+      .about-box { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .btn-outline { margin-left: 0; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3c-4 0-7 2.8-7 6.5 0 2 .9 3.6 2.2 4.8L7 21l4-2h1c4 0 7-2.8 7-6.5S16 3 12 3z"/>
+        <path d="M9.5 9.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5c0 1.8-2.5 2-2.5 4"/>
+        <circle cx="12" cy="16" r="0.3"/>
+      </svg>
+      <span data-i18n="siteName">Zihin Atlası</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#articles" data-i18n="navArticles">Yazılar</a></li>
+      <li><a href="#topics" data-i18n="navTopics">Konular</a></li>
+      <li><a href="#about" data-i18n="navAbout">Hakkında</a></li>
+      <li><a href="#newsletter" data-i18n="navSubscribe">Abone Ol</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div class="lang-toggle">
+        <button id="btnTr" class="active" onclick="setLang('tr')">TR</button>
+        <button id="btnEn" onclick="setLang('en')">EN</button>
+      </div>
+      <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow" data-i18n="heroEyebrow">Psikoloji Blogu</span>
+    <h1 data-i18n="heroTitle">Zihni anlamak, kendini anlamakla başlar...</h1>
+    <p data-i18n="heroText">Bilimsel araştırmalara dayanan, anlaşılır bir dille yazılmış psikoloji içerikleri. Duygular, ilişkiler, zihinsel sağlık ve daha fazlası.</p>
+    <a href="#articles" class="btn" data-i18n="heroBtn1">Yazıları Keşfet</a>
+    <a href="#newsletter" class="btn btn-outline" data-i18n="heroBtn2">Bültene Katıl</a>
+  </div>
+</section>
+
+<section id="articles">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="articlesTitle">Öne Çıkan Yazılar</h2>
+      <p data-i18n="articlesSub">Psikolojinin farklı alanlarından seçilmiş güncel içerikler.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-banner banner-1">🧠</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag1">Bilişsel Psikoloji</span>
+          <h3 data-i18n="post1Title">Beynimiz Neden Olumsuza Odaklanır?</h3>
+          <p data-i18n="post1Text">Olumsuzluk yanlılığı, atalarımızdan kalan bir hayatta kalma mekanizması. Peki modern hayatta bununla nasıl başa çıkabiliriz?</p>
+          <div class="meta"><span data-i18n="post1Meta">5 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-banner banner-2">🌱</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag2">Kişisel Gelişim</span>
+          <h3 data-i18n="post2Title">Alışkanlık Oluşturmanın Bilimi</h3>
+          <p data-i18n="post2Text">Yeni bir alışkanlık gerçekten 21 günde mi oluşur? Araştırmaların söylediği şey biraz daha karmaşık — ve daha umut verici.</p>
+          <div class="meta"><span data-i18n="post2Meta">7 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-banner banner-3">💤</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag3">Zihinsel Sağlık</span>
+          <h3 data-i18n="post3Title">Uyku ve Duygu Düzenleme İlişkisi</h3>
+          <p data-i18n="post3Text">Uykusuz geçen bir gecenin ertesi günü neden her şey daha zor gelir? Uyku ile duygusal dayanıklılık arasındaki bağ.</p>
+          <div class="meta"><span data-i18n="post3Meta">6 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-banner banner-4">🤝</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag4">İlişkiler</span>
+          <h3 data-i18n="post4Title">Bağlanma Stilleri: İlişkilerimizin Görünmez Haritası</h3>
+          <p data-i18n="post4Text">Çocukluktaki bağlanma deneyimlerimiz, yetişkin ilişkilerimizi nasıl şekillendiriyor? Dört bağlanma stiline yakından bakış.</p>
+          <div class="meta"><span data-i18n="post4Meta">8 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-banner banner-5">🧘</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag5">Stres Yönetimi</span>
+          <h3 data-i18n="post5Title">Farkındalık Pratiği Gerçekten İşe Yarıyor mu?</h3>
+          <p data-i18n="post5Text">Mindfulness üzerine yapılan araştırmalar ne diyor? Abartıdan arındırılmış, kanıta dayalı bir değerlendirme.</p>
+          <div class="meta"><span data-i18n="post5Meta">6 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-banner banner-6">💬</div>
+        <div class="card-body">
+          <span class="tag" data-i18n="tag6">Sosyal Psikoloji</span>
+          <h3 data-i18n="post6Title">Neden Kalabalıkta Yalnız Hissederiz?</h3>
+          <p data-i18n="post6Text">Yalnızlık bir kişi sayısı meselesi değil, bağ kurma meselesi. Modern yalnızlığın psikolojisi üzerine.</p>
+          <div class="meta"><span data-i18n="post6Meta">5 dk okuma</span><a href="#" class="read-more" data-i18n="readMore">Devamını oku →</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="topics" class="topics">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="topicsTitle">Konular</h2>
+      <p data-i18n="topicsSub">İlgi alanına göre içerikleri keşfet.</p>
+    </div>
+    <div class="topic-grid">
+      <a href="#" class="topic">
+        <div class="icon">🧠</div>
+        <h3 data-i18n="topic1">Bilişsel Psikoloji</h3>
+        <p data-i18n="topic1Sub">Hafıza, dikkat, karar verme</p>
+      </a>
+      <a href="#" class="topic">
+        <div class="icon">❤️</div>
+        <h3 data-i18n="topic2">İlişkiler</h3>
+        <p data-i18n="topic2Sub">Bağlanma, iletişim, empati</p>
+      </a>
+      <a href="#" class="topic">
+        <div class="icon">🌿</div>
+        <h3 data-i18n="topic3">Zihinsel Sağlık</h3>
+        <p data-i18n="topic3Sub">Kaygı, depresyon, iyilik hali</p>
+      </a>
+      <a href="#" class="topic">
+        <div class="icon">🚀</div>
+        <h3 data-i18n="topic4">Kişisel Gelişim</h3>
+        <p data-i18n="topic4Sub">Motivasyon, alışkanlıklar, hedefler</p>
+      </a>
+      <a href="#" class="topic">
+        <div class="icon">👥</div>
+        <h3 data-i18n="topic5">Sosyal Psikoloji</h3>
+        <p data-i18n="topic5Sub">Grup davranışı, önyargı, kimlik</p>
+      </a>
+      <a href="#" class="topic">
+        <div class="icon">🧒</div>
+        <h3 data-i18n="topic6">Gelişim Psikolojisi</h3>
+        <p data-i18n="topic6Sub">Çocukluk, ergenlik, yaşlanma</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-box">
+      <div class="about-visual">🌿</div>
+      <div class="about-text">
+        <h2 data-i18n="aboutTitle">Zihin Atlası Hakkında</h2>
+        <p data-i18n="aboutP1">Zihin Atlası, psikolojiyi herkes için anlaşılır kılmak amacıyla kuruldu. Bilimsel araştırmaları günlük hayata dokunan, sade bir dille aktarıyoruz.</p>
+        <p data-i18n="aboutP2">Amacımız teşhis koymak ya da terapinin yerini almak değil; zihin ve davranış hakkında merak edilenleri güvenilir kaynaklara dayanarak paylaşmak.</p>
+        <div class="disclaimer" data-i18n="aboutDisclaimer">⚠️ Bu sitedeki içerikler bilgilendirme amaçlıdır ve profesyonel psikolojik destek yerine geçmez. Zorlandığınızı hissediyorsanız bir ruh sağlığı uzmanına başvurmanızı öneririz.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter" class="newsletter">
+  <div class="container">
+    <h2 data-i18n="newsTitle">Yeni yazılardan haberdar ol</h2>
+    <p data-i18n="newsText">Ayda iki kez, gelen kutuna özenle hazırlanmış psikoloji içerikleri gönderelim. Spam yok, istediğin an ayrılabilirsin.</p>
+    <form onsubmit="event.preventDefault(); alert(t('newsThanks'));">
+      <input type="email" required data-i18n-placeholder="newsPlaceholder" placeholder="E-posta adresin">
+      <button type="submit" class="btn" data-i18n="newsBtn">Abone Ol</button>
+    </form>
+    <p class="form-note" data-i18n="newsNote">E-posta adresin üçüncü kişilerle paylaşılmaz.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3 data-i18n="siteName2">Zihin Atlası</h3>
+        <p data-i18n="footerAbout">Psikolojiyi anlaşılır kılan, bilimsel temelli içerik platformu.</p>
+      </div>
+      <div>
+        <h3 data-i18n="footerLinks">Bağlantılar</h3>
+        <ul>
+          <li><a href="#articles" data-i18n="navArticles2">Yazılar</a></li>
+          <li><a href="#topics" data-i18n="navTopics2">Konular</a></li>
+          <li><a href="#about" data-i18n="navAbout2">Hakkında</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="footerContact">İletişim</h3>
+        <ul>
+          <li><a href="mailto:iletisim@zihinatlasi.com">iletisim@zihinatlasi.com</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">X (Twitter)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footerCopy">© 2026 Zihin Atlası. Tüm hakları saklıdır. İçerikler bilgilendirme amaçlıdır, tıbbi tavsiye değildir.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const i18n = {
+    tr: {
+      siteName: "Zihin Atlası", siteName2: "Zihin Atlası",
+      navArticles: "Yazılar", navTopics: "Konular", navAbout: "Hakkında", navSubscribe: "Abone Ol",
+      navArticles2: "Yazılar", navTopics2: "Konular", navAbout2: "Hakkında",
+      heroEyebrow: "Psikoloji Blogu",
+      heroTitle: "Zihni anlamak, kendini anlamakla başlar...",
+      heroText: "Bilimsel araştırmalara dayanan, anlaşılır bir dille yazılmış psikoloji içerikleri. Duygular, ilişkiler, zihinsel sağlık ve daha fazlası.",
+      heroBtn1: "Yazıları Keşfet", heroBtn2: "Bültene Katıl",
+      articlesTitle: "Öne Çıkan Yazılar",
+      articlesSub: "Psikolojinin farklı alanlarından seçilmiş güncel içerikler.",
+      readMore: "Devamını oku →",
+      tag1: "Bilişsel Psikoloji", post1Title: "Beynimiz Neden Olumsuza Odaklanır?",
+      post1Text: "Olumsuzluk yanlılığı, atalarımızdan kalan bir hayatta kalma mekanizması. Peki modern hayatta bununla nasıl başa çıkabiliriz?", post1Meta: "5 dk okuma",
+      tag2: "Kişisel Gelişim", post2Title: "Alışkanlık Oluşturmanın Bilimi",
+      post2Text: "Yeni bir alışkanlık gerçekten 21 günde mi oluşur? Araştırmaların söylediği şey biraz daha karmaşık — ve daha umut verici.", post2Meta: "7 dk okuma",
+      tag3: "Zihinsel Sağlık", post3Title: "Uyku ve Duygu Düzenleme İlişkisi",
+      post3Text: "Uykusuz geçen bir gecenin ertesi günü neden her şey daha zor gelir? Uyku ile duygusal dayanıklılık arasındaki bağ.", post3Meta: "6 dk okuma",
+      tag4: "İlişkiler", post4Title: "Bağlanma Stilleri: İlişkilerimizin Görünmez Haritası",
+      post4Text: "Çocukluktaki bağlanma deneyimlerimiz, yetişkin ilişkilerimizi nasıl şekillendiriyor? Dört bağlanma stiline yakından bakış.", post4Meta: "8 dk okuma",
+      tag5: "Stres Yönetimi", post5Title: "Farkındalık Pratiği Gerçekten İşe Yarıyor mu?",
+      post5Text: "Mindfulness üzerine yapılan araştırmalar ne diyor? Abartıdan arındırılmış, kanıta dayalı bir değerlendirme.", post5Meta: "6 dk okuma",
+      tag6: "Sosyal Psikoloji", post6Title: "Neden Kalabalıkta Yalnız Hissederiz?",
+      post6Text: "Yalnızlık bir kişi sayısı meselesi değil, bağ kurma meselesi. Modern yalnızlığın psikolojisi üzerine.", post6Meta: "5 dk okuma",
+      topicsTitle: "Konular", topicsSub: "İlgi alanına göre içerikleri keşfet.",
+      topic1: "Bilişsel Psikoloji", topic1Sub: "Hafıza, dikkat, karar verme",
+      topic2: "İlişkiler", topic2Sub: "Bağlanma, iletişim, empati",
+      topic3: "Zihinsel Sağlık", topic3Sub: "Kaygı, depresyon, iyilik hali",
+      topic4: "Kişisel Gelişim", topic4Sub: "Motivasyon, alışkanlıklar, hedefler",
+      topic5: "Sosyal Psikoloji", topic5Sub: "Grup davranışı, önyargı, kimlik",
+      topic6: "Gelişim Psikolojisi", topic6Sub: "Çocukluk, ergenlik, yaşlanma",
+      aboutTitle: "Zihin Atlası Hakkında",
+      aboutP1: "Zihin Atlası, psikolojiyi herkes için anlaşılır kılmak amacıyla kuruldu. Bilimsel araştırmaları günlük hayata dokunan, sade bir dille aktarıyoruz.",
+      aboutP2: "Amacımız teşhis koymak ya da terapinin yerini almak değil; zihin ve davranış hakkında merak edilenleri güvenilir kaynaklara dayanarak paylaşmak.",
+      aboutDisclaimer: "⚠️ Bu sitedeki içerikler bilgilendirme amaçlıdır ve profesyonel psikolojik destek yerine geçmez. Zorlandığınızı hissediyorsanız bir ruh sağlığı uzmanına başvurmanızı öneririz.",
+      newsTitle: "Yeni yazılardan haberdar ol",
+      newsText: "Ayda iki kez, gelen kutuna özenle hazırlanmış psikoloji içerikleri gönderelim. Spam yok, istediğin an ayrılabilirsin.",
+      newsPlaceholder: "E-posta adresin", newsBtn: "Abone Ol",
+      newsNote: "E-posta adresin üçüncü kişilerle paylaşılmaz.",
+      newsThanks: "Teşekkürler! Abonelik isteğin alındı.",
+      footerAbout: "Psikolojiyi anlaşılır kılan, bilimsel temelli içerik platformu.",
+      footerLinks: "Bağlantılar", footerContact: "İletişim",
+      footerCopy: "© 2026 Zihin Atlası. Tüm hakları saklıdır. İçerikler bilgilendirme amaçlıdır, tıbbi tavsiye değildir."
+    },
+    en: {
+      siteName: "Mind Atlas", siteName2: "Mind Atlas",
+      navArticles: "Articles", navTopics: "Topics", navAbout: "About", navSubscribe: "Subscribe",
+      navArticles2: "Articles", navTopics2: "Topics", navAbout2: "About",
+      heroEyebrow: "Psychology Blog",
+      heroTitle: "Understanding the mind begins with understanding yourself.",
+      heroText: "Psychology content grounded in scientific research, written in plain language. Emotions, relationships, mental health, and more.",
+      heroBtn1: "Explore Articles", heroBtn2: "Join Newsletter",
+      articlesTitle: "Featured Articles",
+      articlesSub: "Fresh picks from different corners of psychology.",
+      readMore: "Read more →",
+      tag1: "Cognitive Psychology", post1Title: "Why Does Our Brain Focus on the Negative?",
+      post1Text: "Negativity bias is a survival mechanism inherited from our ancestors. How can we handle it in modern life?", post1Meta: "5 min read",
+      tag2: "Personal Growth", post2Title: "The Science of Building Habits",
+      post2Text: "Does a new habit really form in 21 days? What research says is a bit more complex — and more hopeful.", post2Meta: "7 min read",
+      tag3: "Mental Health", post3Title: "Sleep and Emotion Regulation",
+      post3Text: "Why does everything feel harder after a sleepless night? The link between sleep and emotional resilience.", post3Meta: "6 min read",
+      tag4: "Relationships", post4Title: "Attachment Styles: The Invisible Map of Our Relationships",
+      post4Text: "How do childhood attachment experiences shape our adult relationships? A closer look at the four attachment styles.", post4Meta: "8 min read",
+      tag5: "Stress Management", post5Title: "Does Mindfulness Actually Work?",
+      post5Text: "What does the research on mindfulness say? An evidence-based review, minus the hype.", post5Meta: "6 min read",
+      tag6: "Social Psychology", post6Title: "Why Do We Feel Lonely in a Crowd?",
+      post6Text: "Loneliness isn't about how many people are around — it's about connection. On the psychology of modern loneliness.", post6Meta: "5 min read",
+      topicsTitle: "Topics", topicsSub: "Explore content by area of interest.",
+      topic1: "Cognitive Psychology", topic1Sub: "Memory, attention, decision-making",
+      topic2: "Relationships", topic2Sub: "Attachment, communication, empathy",
+      topic3: "Mental Health", topic3Sub: "Anxiety, depression, well-being",
+      topic4: "Personal Growth", topic4Sub: "Motivation, habits, goals",
+      topic5: "Social Psychology", topic5Sub: "Group behavior, bias, identity",
+      topic6: "Developmental Psychology", topic6Sub: "Childhood, adolescence, aging",
+      aboutTitle: "About Mind Atlas",
+      aboutP1: "Mind Atlas was founded to make psychology accessible to everyone. We translate scientific research into plain language that touches everyday life.",
+      aboutP2: "Our goal is not to diagnose or replace therapy — it's to share what people wonder about the mind and behavior, grounded in reliable sources.",
+      aboutDisclaimer: "⚠️ Content on this site is for informational purposes and is not a substitute for professional psychological support. If you're struggling, we encourage you to reach out to a mental health professional.",
+      newsTitle: "Stay up to date with new articles",
+      newsText: "Twice a month, we'll send carefully crafted psychology content to your inbox. No spam, unsubscribe anytime.",
+      newsPlaceholder: "Your email address", newsBtn: "Subscribe",
+      newsNote: "Your email will never be shared with third parties.",
+      newsThanks: "Thank you! Your subscription request has been received.",
+      footerAbout: "A science-based content platform making psychology accessible.",
+      footerLinks: "Links", footerContact: "Contact",
+      footerCopy: "© 2026 Mind Atlas. All rights reserved. Content is informational and not medical advice."
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'tr';
+
+  function t(key) { return i18n[currentLang][key] || key; }
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang;
+    document.title = lang === 'tr' ? 'Zihin Atlası | Psikoloji Blogu' : 'Mind Atlas | Psychology Blog';
+    document.getElementById('btnTr').classList.toggle('active', lang === 'tr');
+    document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (i18n[lang][key]) el.textContent = i18n[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (i18n[lang][key]) el.placeholder = i18n[lang][key];
+    });
+  }
+
+  setLang(currentLang);
+
+  // Close mobile menu when a link is clicked
+  document.querySelectorAll('#navLinks a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+  );
+</script>
+
+</body>
+</html>
